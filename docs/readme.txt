@@ -1,7 +1,8 @@
-App Engine Base Project
-Project Repository: http://github.com/mckoss/appengine-base
+AppEngine-Base Project
 
-Copyright (c) 2009, Seattle Google Technology Users Group
+Copyright (c) Seattle Google Technology Users Group
+
+Repository: http://github.com/mckoss/appengine-base
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -27,18 +28,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 Goals
 
 The goal of this project is to provide a simple-to-user starter application for new
-App Engine projects.  It uses Django (1.1) and adds some simple facilities
-to support:
+App Engine projects.  Where possible, each of the facilities, below, is designed to
+operate independently of the others and can be configured to be used or not as the
+application author requires.
+
+AppEngine-Base uses Django (1.1) and adds some simple facilities to support:
 
 - Request object extensions
 - Common global template variables
 - Signed Cookie Support
+- Unique IP and User Tracking
 - Simple Global Variables peristed to datastore
 - Versioned Memcaching
 - Protected Views for signed in and administrative users
-- Google Analytics Tracking
 - JSON api handler (including cross-site support)
 - JavaScript composition and minification
 - Unit Testing framework (JavaScript and Python)
 - Server-side profiling
- 
+- Atom Support
+- Member Profiles
+- Twitter Auth
+- Facebook Connect
+- Google Analytics Tracking
+- Google Webmaster Tools Verification
+- Content Reporting and Blocking (Spam/Adult)
+- Application Admin Page

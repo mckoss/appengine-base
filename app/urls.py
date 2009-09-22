@@ -10,8 +10,8 @@ urlpatterns.extend(baseapp.filter.JSONUrls())
 
 urlpatterns.extend(patterns('',
     (r'^$', baseapp.views.Home),
-    (r'^AboutUs$', direct_to_template, {'template':'about-us.html'}),
-    (r'^TermsOfService$', direct_to_template, {'template':'t-o-s.html'}),
+    (r'^about-us$', direct_to_template, {'template':'about-us.html'}),
+    (r'^terms-of-service$', direct_to_template, {'template':'t-o-s.html'}),
     
     (r'^adult-warning$', direct_to_template, {'template': 'adult-warning.html'}),
 

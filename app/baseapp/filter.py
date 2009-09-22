@@ -190,23 +190,12 @@ class ReqFilter(object):
             'is_admin': req.FAllow('admin'),
             'is_user': req.FAllow('user'),
             'is_adult': req.FAllow('adult'),
-            'is_debug': settings.DEBUG,
-    
-            'site_name': settings.sSiteName,
-            'site_host': settings.sSiteHost,
-            'site_domain': settings.sSiteDomain,
-            'site_title': settings.sSiteTitle,
-            'site_tagline': settings.sSiteTagline,
-            'site_admin': "%s (%s)" % (settings.ADMINS[0][1], settings.ADMINS[0][0]),
-            'twitter_source': settings.sTwitterSource,
-            'twitter_user': settings.sTwitterUser,
-    
-            'analytics_code': settings.sAnalyticsCode,
-            'ad_publisher_id': settings.sAdPublisherID,
             
             'logout': users.create_logout_url(req.get_full_path()),
             'login': users.create_login_url(req.get_full_path())
         })
+        
+        AddToResponse(req, settings.APP_CONFIG)
         
     def process_response(self, req, resp):
         req.mCookies['user-tracking'] = req.uidSigned

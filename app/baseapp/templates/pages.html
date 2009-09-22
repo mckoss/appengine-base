@@ -1,8 +1,8 @@
 {% extends "master.html" %}
 
 {% block head_extra %}
-{% if rss_url %}
-<link rel="alternate" type="application/rss+xml" title="{{site_name}} - {% block subTitle %}{% endblock %}" href="{{rss_url}}" />
+{% if atom_url %}
+<link rel="alternate" type="application/atom+xml" title="{{site_name}} - {% block subTitle %}{% endblock %}" href="{{atom_url}}" />
 {% endif %}
 {% endblock %}
 
@@ -31,14 +31,17 @@
 
 {% block footer %}
 <div class="bottom">
-<a href="/AboutUs">About Us</a> |
+<a href="/about-us">About Us</a> |
 <a href="http://blog.{{site_domain}}">Blog</a> |
-<a href="/TermsOfService">Terms of Service</a> |
+<a href="/terms-of-service">Terms of Service</a> |
+{% if twitter_user %}
 <a href="http://twitter.com/{{twitter_user}}">Follow {{site_name}} on Twitter</a> |
+{% endif %}
 {% if user %}<a href="{{logout}}">Sign Out</a>
 {% else %}<a href="{{login}}">Sign In</a>{% endif %}
 </div>
 
+{% if get_satisfaction %}
 <script type="text/javascript" charset="utf-8">
   var is_ssl = ("https:" == document.location.protocol);
   var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
@@ -56,5 +59,6 @@
 
   var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
 </script>
+{% endif %}
 {% endblock %}
 

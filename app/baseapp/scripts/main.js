@@ -1,7 +1,7 @@
 // AppEngine-Base main.js
 // Copyright (c) Seattle Google Technology Users Group
 
-global_namespace.Define('seattle-gtug', function(NS) {
+global_namespace.Define('seattle-gtug.appengine-base', function(NS) {
 	var Base = NS.Import('startpad.base');
 
 NS.Extend(NS, {

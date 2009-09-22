@@ -22,6 +22,7 @@ Mike:
 - Get Satisfaction option
 - Stub favicon
 - Stub Logo
+- AdManager support
 
 - Twitter Auth
 - Facebook Connect

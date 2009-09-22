@@ -10,17 +10,19 @@
 
 {% block head_extra %}{% endblock %}
 
-{{ script_includes.quip_art }}
+{{ script_includes.appengine_base }}
 
+{% if ad_publisher_id %}
 <script src="http://partner.googleadservices.com/gampad/google_service.js"></script>
-<script type="text/javascript">
-GS_googleAddAdSenseService("{{ad_publisher_id}}");
-GS_googleEnableAllServices();
+<script>
+	GS_googleAddAdSenseService("{{ad_publisher_id}}");
+	GS_googleEnableAllServices();
 </script>
+{% endif %}
 
 <script>
-QA = global_namespace.Import('quip-art');
-QA.Init("{{csrf}}");
+AE = global_namespace.Import('seattle-gtug.appengine-base');
+AE.Init("{{csrf}}");
 {% block script %}
 function Loaded() {}
 {% endblock %}
@@ -36,12 +38,12 @@ function Loaded() {}
 {% block footer %}
 {% endblock %}
 
+{% if analytics_code %}
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
-{% block analytics %}
 try
 	{
 	var pageTracker = _gat._getTracker("{{analytics_code}}");
@@ -49,8 +51,8 @@ try
 	pageTracker._trackPageview();
 	}
 catch (e) {}
-{% endblock %}
 </script>
+{% endif %}
 
 {% block page_end %}
 {% endblock %}

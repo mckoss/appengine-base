@@ -17,7 +17,7 @@ indexes:
   - name: dateCreated
     direction: desc
 
-# Used 37 times in query history.
+# Unused in query history -- copied from input.
 - kind: Score
   properties:
   - name: hrsHalf
@@ -25,7 +25,7 @@ indexes:
   - name: LogS
     direction: desc
 
-# Used 140 times in query history.
+# Unused in query history -- copied from input.
 - kind: Score
   properties:
   - name: hrsHalf

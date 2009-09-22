@@ -6,17 +6,17 @@ from django.template import RequestContext
 
 import util
 import models
-import reqfilter
+from baseapp import filter
 
 import logging
 
 def Home(req):
-    return reqfilter.RenderResponse('home.html')
+    return filter.RenderResponse('home.html')
 
-# TODO: Kludge - can this be in reqfilter instead - never use 404 template file?
+# TODO: Kludge - can this be in filter instead - never use 404 template file?
 # Note that this handles JSON calls too!
 def CatchAll(req):
-    raise reqfilter.Error("Page not found.", "Fail/NotFound")
+    raise filter.Error("Page not found.", "Fail/NotFound")
 
 def Admin(req, command=None):
     req.Require('admin')
@@ -27,7 +27,7 @@ def Admin(req, command=None):
         req.Require('api')
 
         if req.fJSON:
-            return reqfilter.HttpJSON(req, {})
+            return filter.HttpJSON(req, {})
         return HttpResponseRedirect("/admin/")
 
     try:
@@ -42,5 +42,5 @@ def Admin(req, command=None):
            'cUnscopedComments':len(Comment.Unscoped()),
            'MemCache': mpMem
            })
-    return reqfilter.RenderResponse('admin.html')
+    return filter.RenderResponse('admin.html')
           

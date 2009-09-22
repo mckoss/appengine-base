@@ -46,7 +46,7 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
-    'reqfilter.ReqFilter',
+    'baseapp.filter.ReqFilter',
 )
 
 ROOT_URLCONF = 'urls'
@@ -69,7 +69,7 @@ SCRIPT_ALIASES = {'aebase':['namespace', 'base', 'main']}
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
-    'reqfilter.GetContext',
+    'baseapp.filter.GetContext',
     'jscomposer.GetContext',
     )
 
@@ -77,5 +77,4 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'baseapp',
     'jscomposer',
-    'reqfilter',
 )

@@ -2,8 +2,8 @@ from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils import safestring, encoding, html
 
+import baseapp.filter
 import util
-import reqfilter
 import settings
 import simplejson
 from datetime import datetime, timedelta
@@ -218,7 +218,7 @@ def SAgeReq(dt):
 # --------------------------------------------------------------------
 @register.filter(name='JSON')
 def SJSON(obj):
-    s = simplejson.dumps(obj, cls=reqfilter.JavaScriptEncoder, indent=4)
+    s = simplejson.dumps(obj, cls=filter.JavaScriptEncoder, indent=4)
     return safestring.SafeString(s)
 
 @register.filter(name='href')

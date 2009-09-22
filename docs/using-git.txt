@@ -1,0 +1,33 @@
+The master repository for the AppEngine-Base project is stored on GitHub:
+
+http://github.com/mckoss/appengine-base
+
+Windows users can install the Git client: http://code.google.com/p/msysgit/
+
+== GET A STATIC COPY OF THIS PROJECT ==
+- Visit: http://github.com/mckoss/appengine-base
+- Click the "download" button (to the right of the project name)
+- Click on Zip format
+- Unzip locally
+
+== USE GIT TO RETRIVE A (READONLY) COPY ==
+- git clone git://github.com/mckoss/appengine-base.git <aebase>
+  (where <aebase> is the name of the directory you want to copy the project)
+
+== CREATE YOUR OWN GIT-HUB BRANCH (READ-WRITE) ==
+Recommended if you may want to offer your contributions back to the main
+AppEngine-Base project.
+
+- Visit: http://github.com/mckoss/appengine-base
+- Click on the "fork" button to make your own version of this project
+- git clone <your-project-clone-URL> <aebase>
+- To push your committed changes to your git-hub project:
+
+    git push origin master
+  
+  Note, you may have to execute:
+  
+    git remote rm origin
+    git remote add origin git@github.com:<username>/appengine-base.git
+  
+  in order to set the origin branch properly (Why is this?).

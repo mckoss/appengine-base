@@ -1,0 +1,30 @@
+Mike:
+
+- Strip out stuff left over from Quip-Art project
+- Test generic build, deploy to appspot
+- Python Unit Tests
+- JavaScript Unit Test
+- Put Wiki markup formated readme file in project root
+- Change readme docs to wiki markup for easier browsing on github
+- Fix Atom generator templates
+- Member models
+- Factor modules out of baseapp?
+- Allow each app to have templates, scripts, and styles
+- CSS composition
+- Generate documentation from doc strings
+- Getting started documentation
+- Google loader support for external js libraries
+- webmaster tools verification
+- Errors if settings file not updated completely
+- Error if server password not changed
+- Firepython support (not required)
+- Run javascript through template processor
+- Get Satisfaction option
+- Stub favicon
+- Stub Logo
+
+- Twitter Auth
+- Facebook Connect
+- Open Social?
+
+- Kiwi integration

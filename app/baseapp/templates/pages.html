@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+
+{% block head_extra %}
+{% if rss_url %}
+<link rel="alternate" type="application/rss+xml" title="{{site_name}} - {% block subTitle %}{% endblock %}" href="{{rss_url}}" />
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="page">
+
+{% block header %}
+<div class="head">
+	<a target="_top" href="/"><img title="{{site_name}}" class="logo" src="/images/Quip-Art-Logo.png"></a>
+
+	<div class="page-heading">
+		{% block page-heading-extra %}{% endblock %}
+		<h1>{% block page-heading %}{{site_title}}{% endblock %}</h1>
+		<p class="subhead">{% block page-subheading %}{{site_tagline}}{% endblock %}</p>
+	</div>
+</div>
+{% endblock %}
+
+{% block pagebody %}
+{% endblock %}
+
+<div class="timer"><span>Elapsed time: {{elapsed}}s</span></div>
+
+</div> <!-- page -->
+{% endblock %}
+
+{% block footer %}
+<div class="bottom">
+<a href="/AboutUs">About Us</a> |
+<a href="http://blog.{{site_domain}}">Blog</a> |
+<a href="/TermsOfService">Terms of Service</a> |
+<a href="http://twitter.com/{{twitter_user}}">Follow {{site_name}} on Twitter</a> |
+{% if user %}<a href="{{logout}}">Sign Out</a>
+{% else %}<a href="{{login}}">Sign In</a>{% endif %}
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";  
+  feedback_widget_options.company = "startpad";
+  feedback_widget_options.placement = "left";
+  feedback_widget_options.color = "#cc1221";
+  feedback_widget_options.style = "idea";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+{% endblock %}
+

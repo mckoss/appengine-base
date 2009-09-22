@@ -1,0 +1,91 @@
+{% extends "pages.html" %}
+{% load humanize %}
+{% load cache %}
+{% load custom %}
+
+{% block subTitle %}{{site_title}}{% endblock %}
+
+{% block script %}
+function Loaded()
+{
+
+}
+{% endblock %}
+
+{% block pagebody %}
+<div class="home">
+
+<div class="top">
+<h2>Step #1 - Pick an Overlay Image</h2>
+{% cache 180 home app_version %}
+	<table class="pop-overlays">
+	<tr>
+	{% for overlay in overlays %}
+	<td class="image"><a href="/overlay/{{overlay.GetId}}"">
+		<img src="{{overlay.ImageURL.med}}"/></a>
+	</td>
+	{% endfor %}
+	</tr>
+	<tr>
+	{% for overlay in overlays %}
+	<td class="text">
+		<h3><a href="/overlay/{{overlay.GetId}}"">{{overlay.sTitle|escape}}</a></h3>
+		<p class="author">
+			{% if overlay.sFullname %}by
+				{% if overlay.sURL %}<a target="_blank" href="{{overlay.sURL|href}}">{% endif %}
+				{{overlay.sFullname|escape}}
+				{% if overlay.sURL %}</a>{% endif %}
+			{% endif %}
+		</p>
+		<p class="stats">
+			Viewed by {{overlay.viewCount|intcomma}} {{overlay.viewCount|pluralize:"person,people"}}
+			on {{overlay.pageCount|intcomma}} page{{overlay.pageCount|pluralize}}
+			<br/>Example on <a href="/{{overlay.MostPopularPage.GetId}}">{{overlay.MostPopularPage.Domain|ellipsis:25}}</a>
+		</p>
+	</td>
+	{% endfor %}
+	</tr></table>
+{% endcache %}
+<div style="text-align:center;font-size:20px;">
+<a href="/popular">More ...</a>
+</div>
+</div>
+
+<div class="left">
+
+	<h2>What is {{site_name}}?</h2>
+	<p>Use {{site_name}} to overlay your graphic commentary over any web page in 3 easy steps:
+	<ol>
+	  <li>Pick from our <a href="/popular">gallery</a> of designer-created images.</li>
+	  <li>Enter the URL of the page you want to cover.</li>
+	  <li>Send the link to your friends over Twitter, or IM</li>
+	</ol>
+	
+	<div style="text-align:center;padding:10px;"><img src="/images/page-sample.png"/></div>
+	</p>
+	
+</div> <!-- left -->
+
+<div class="right">
+
+	<div>
+	<h2>Want to make your own?</h2>
+	<p>
+		Have a great idea for your own graphic?  We'd love to feature your work at {{site_name}}.  To get
+		started:
+		<p style="text-align:center;">
+		<input type="button" onclick="window.location='/overlay';" value="Submit Your Image"/>
+		</p>
+	</p>
+	<p style="font-style:italic;">
+		Selected images will be featured
+		in our <a href="/popular">image gallery</a>.  We'll credit you by name and link to your web site in each page that uses
+		it.
+	</p>
+	</div>
+
+</div> <!-- right -->
+
+</div> <!-- home -->
+
+{% endblock %}

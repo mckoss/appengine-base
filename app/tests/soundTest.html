@@ -1,0 +1,17 @@
+<html>
+<head>
+<script>
+var snd;
+function Loaded()
+{
+	snd = document.getElementById("snd");	
+}
+</script>
+</head>
+<body onload="Loaded();">
+Emebed is here--&gt;<embed id="snd" style="width:0;height:0;" src="LoveMeDo.mid"/>&lt;--
+<input type="button" onclick="snd.src='silence.mid';" value="Stop"/>
+<input type="button" onclick="snd.src='LoveMeDo.mid';" value="Start"/>
+
+</body>
+</html>

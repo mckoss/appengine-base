@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>fails.htm - dummy Unit Test</title>
+<script SRC="unit.js"></script>
+</head>
+<body>
+<h1><script>document.write(document.title);</script></h1>
+<script>
+var ts = new UT.TestSuite();
+ts.DWOutputDiv();
+ts.AddTest("Assert(false)", function (ut) {ut.Assert(false, "Never true");});
+
+ts.Run();
+ts.Report();
+
+</script>
+</body>
+</html>
+

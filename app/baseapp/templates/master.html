@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{{site_name}} - {% block subTitle %}{% endblock %}</title>
+
+<link rel="stylesheet" type="text/css" href="/styles/main.css"/>
+<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico"/>
+<link rel="icon" type="image/png" href="/images/favicon.png"/>
+<link rel="apple-touch-icon" href="/images/iphone.png"/>
+
+{% block head_extra %}{% endblock %}
+
+{{ script_includes.quip_art }}
+
+<script src="http://partner.googleadservices.com/gampad/google_service.js"></script>
+<script type="text/javascript">
+GS_googleAddAdSenseService("{{ad_publisher_id}}");
+GS_googleEnableAllServices();
+</script>
+
+<script>
+QA = global_namespace.Import('quip-art');
+QA.Init("{{csrf}}");
+{% block script %}
+function Loaded() {}
+{% endblock %}
+</script>
+
+</head>
+
+<body>
+
+{% block body %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+{% block analytics %}
+try
+	{
+	var pageTracker = _gat._getTracker("{{analytics_code}}");
+	pageTracker._addIgnoredOrganic("{{site_host}}")
+	pageTracker._trackPageview();
+	}
+catch (e) {}
+{% endblock %}
+</script>
+
+{% block page_end %}
+{% endblock %}
+
+<script>Loaded();</script>
+</body>
+</html>

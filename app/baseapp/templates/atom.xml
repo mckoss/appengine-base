@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+{% load custom %}
+<rss version="2.0">
+    <channel>
+        <title>{{site_name}} | {% block feed_title %}{{feed.title}}{% endblock %}</title>
+        <link>{{host}}{{feed.link}}</link>
+        <description>{{feed.description}}</description>
+        <pubDate>{{feed.date|date:"r"}}</pubDate>
+        <language>en-us</language>
+        <webMaster>{{site_admin}}</webMaster>
+        <image>{{host}}/images/logo.png</image>
+        <ttl>{{feed.ttl_minutes}}</ttl>
+    {% for item in feed.items %}
+      <item>
+      	<guid isPermaLink="true">{{item.rss.link}}</guid>
+        <link>{{item.rss.link}}</link>
+        <title>{% block title %}{{item.rss.title}}{% endblock %}</title>
+        <description>{% double_escape %}{% block description %}{{item.rss.description}}{% endblock %}{% enddouble_escape %}</description>
+        <pubDate>{{item.rss.date|date:"r"}}</pubDate>
+      </item>
+    {% endfor %}
+  </channel>
+</rss>

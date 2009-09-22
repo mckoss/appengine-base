@@ -1,0 +1,31 @@
+application: aebase
+version: 1
+runtime: python
+api_version: 1
+default_expiration: 1h
+
+handlers:
+- url: /styles
+  static_dir: styles
+
+- url: /tests
+  static_dir: tests
+  login: admin
+
+- url: /images
+  static_dir: images
+  
+- url: /static
+  static_dir: static
+    
+- url: /favicon.ico
+  static_files: images/favicon.ico
+  upload: images/favicon.ico
+  mime_type: image/vnd.microsoft.icon
+
+- url: /robots.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt
+ 
+- url: /.*
+  script: main.py

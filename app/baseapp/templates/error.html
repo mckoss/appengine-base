@@ -1,0 +1,12 @@
+{% extends "pages.html" %}
+{% block subTitle %}Error - {{ message|escape }}{% endblock %}
+{% block page-heading %}Oh-oh!{% endblock %}
+{% block page-subheading %}"Houston, we've had a problem."{% endblock %}
+{% block pagebody %}
+<div style="text-align:center;">
+	<p style="font-size: 24px;" class="error">
+		{{status_major}}: {{message|escape}}
+	</p>
+	<p style="font-style: italic;">({{status}})</p>
+</div>
+{% endblock %}

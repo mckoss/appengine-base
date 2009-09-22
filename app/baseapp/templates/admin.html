@@ -1,0 +1,121 @@
+{% extends "pages.html" %}
+{% block subTitle %}Administration{% endblock %}
+{% block pagebody %}
+<div class="page">
+
+<a target="_top" href="/"><img title="{{site_name}}" class="logo" src="/images/logo.png"></a>
+<h1 style="padding-top: 40px;">Community URL Sharing Service</h1>
+
+<div class="left">
+<h2>Welcome, {{ user.nickname }}</h2>
+
+
+<h2>Memcache</h2>
+<a href="/admin/flush-memcache?csrf={{csrf}}">Flush</a>
+<ol>
+{% for pair in MemCache %}
+	<li>{{pair.key}}: {{pair.value|escape}}</li>
+{% endfor %}
+</ol>
+
+<a href="/admin/scope-comments?csrf={{csrf}}">Scope Comments:</a> {{cUnscopedComments}}
+
+<h2>API Key Generator</h2>
+<form action="create-api-key" method="get">
+	<input type="hidden" name="csrf" value="{{csrf}}"/>
+	<table>
+		<tr><th><label for="dev">Dev:</label></th><td><input type="text" id="dev" name="dev"/></td></tr>
+		<tr><th><label for="exp">Expires:</label></th><td><input type="text" id="exp" name="exp" value="2009-12-31"/></td></tr>
+		<tr><th><label for="rate">Rate (RPM):</label></th><td><input type="text" id="rate" name="rate" value="10"/></td></tr>
+		<tr><th></th><td><input type="submit" value="Create"/></td></tr>
+	</table>
+</form>
+</div> <!-- left -->
+
+<div class="right">
+
+{% if Broken %}
+<p>
+<a href="/admin/clean-broken?csrf={{csrf}}">Remove Broken Scores</a> ({{ Broken|length }})
+<table class="scores">
+<tr><th>name</th><th>hrsHalf</th><th>S</th><th>LogS</th><th>hrsLast</th></tr>
+{% for score in Broken %}
+	<tr>
+		<td>{{score.name}}</td>
+		<td class="num">{{score.hrsHalf}}</td>
+		<td class="num">{{score.S}}</td>
+		<td class="num">{{score.LogS}}</td>
+		<td class="num">{{score.DateLast}}</td>
+	</tr>
+{% endfor %}
+</table>
+</p>
+{% endif %}
+
+{% if BadComments %}
+<p>
+<a href="/admin/clean-comments?csrf={{csrf}}">Remove Empty Comments</a>
+<table class="scores">
+<tr><th>comment</th><th>dateCreated</th><th>MapKey</th></tr>
+{% for comment in BadComments %}
+	<tr>
+		<td>{{comment.comment|escape}}</td>
+		<td class="num">{{comment.dateCreated}}</td>
+		<td class="num">{{comment.MapKey}}</td>
+	</tr>
+{% endfor %}
+</table>
+</p>
+{% endif %}
+
+{% if BrokenComments %}
+<p>
+<a href="/admin/clean-broken-comments?csrf={{csrf}}">Remove Broken Comments</a> ({{BrokenComments|length}})
+<table class="scores">
+<tr><th>comment</th><th>dateCreated</th><th>MapKey</th></tr>
+{% for comment in BrokenComments %}
+	<tr>
+		<td>{{comment.comment|escape}}</td>
+		<td class="num">{{comment.dateCreated}}</td>
+		<td class="num">{{comment.MapKey}}</td>
+	</tr>
+{% endfor %}
+</table>
+</p>
+{% endif %}
+
+{% if BadCounts %}
+<p>
+<a href="/admin/fix-tag-counts?csrf={{csrf}}">Fix Tag Counts</a> ({{BadCounts|length}})
+<ol>
+{% for map in BadCounts %}
+	<li>(<a href="/info/{{map.GetId}}">info</a>): {{map.STagDiff|escape}}</li>
+{% endfor %}
+</ol>
+{% endif %}
+
+{% if MissingCreator %}
+<p>
+<table class="scores">
+<tr><th>comment</th><th>Cmt Date</th><th>Link Date</th><th>Shared By</th><th>Creator</th></tr>
+{% for comment in MissingCreator %}
+	<tr>
+		<td><a href="/{{comment.map.GetId}}">{{comment.map.GetId}}</a></td>
+		<td class="num">{{comment.dateCreated|date:"m/d/y H:i:s"}}</td>
+		<td class="num">{{comment.map.dateCreated|date:"m/d/y H:i:s"}}</td>
+		<td class="num">{{comment.username}}</td>
+		<td class="num">{{comment.map.Creator}}</td>
+	</tr>
+{% endfor %}
+</table>
+</p>
+{% endif %}
+</div> <!-- right -->
+
+<div class="bottom">
+<a href="{{ logout }}">Logout</a>
+</div> <!-- bottom -->
+
+
+</div> <!-- page -->
+{% endblock %}

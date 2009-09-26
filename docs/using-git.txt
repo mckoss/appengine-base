@@ -74,7 +74,24 @@ comments for each check-in:
 (unfortunately, notepad does not format LF-terminated commit messages properly, so these look ugly,
 but you can just type your message at the beginning of the file and it works OK).
 
-- To push your committed changes to your git-hub project:
+When you make changes to your repository, you can do a "local checkin" with:
+
+	git commit -a
+	
+or
+	git commit -a -m "commit message/comment"
+	
+To see what will be committed in advance you can:
+
+	git status
+	
+to see a listing of individual files and their changes.  Or do:
+
+	git diff
+	
+to see a detailed change list for all your file edits.
+
+To push your committed changes to your git-hub project:
 
     git push
     

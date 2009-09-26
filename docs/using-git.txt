@@ -63,8 +63,16 @@ AppEngine-Base project.
     git remote rm origin
     git remote add origin git@github.com:<username>/appengine-base.git
 
-in order to set the origin branch properly (the default git:// protocol that will be setup by
+The latter two commands the origin branch properly (the default git:// protocol that will be setup by
 the clone command does not work on github to push changes back to the server).
+
+You'll want to set an EDITOR shell variable so your commit's don't require a -m command to give
+comments for each check-in:
+
+	set EDITOR=notepad
+	
+(unfortunately, notepad does not format LF-terminated commit messages properly, so these look ugly,
+but you can just type your message at the beginning of the file and it works OK).
 
 - To push your committed changes to your git-hub project:
 
@@ -72,3 +80,11 @@ the clone command does not work on github to push changes back to the server).
     
 or
 	git push origin master
+	
+The first time you do this, you will get the message:
+
+	The authenticity of host 'github.com (65.74.177.129)' can't be established.
+	RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+	Are you sure you want to continue connecting (yes/no)?
+	
+You can type "yes" to add git-hub's public RSA key to your .ssh\known_hosts file.

@@ -1,3 +1,4 @@
+==============================================================================
 GET A STATIC COPY OF THIS PROJECT
 ==============================================================================
 - Visit: http://github.com/mckoss/appengine-base
@@ -5,6 +6,7 @@ GET A STATIC COPY OF THIS PROJECT
 - Click on Zip format
 - Unzip locally
 
+==============================================================================
 INSTALL GIT ON YOUR MACHINE
 ==============================================================================
 The master repository for the AppEngine-Base project is stored on GitHub:
@@ -23,20 +25,32 @@ I use these settings for the install:
 	  repository.
 
 Configure Git from the command prompt:
-  - ssh-keygen -C "your@email.com" -t rsa
-    (this will put your SSH keys in c:\Users\Username\.ssh\)
-  - git config --global user.name "Your Name"
-  - git config --global user.email "your@email.com"
+  ssh-keygen -C "your@email.com" -t rsa
 
+this will put your SSH keys in c:\Users\Username\.ssh\
+
+  git config --global user.name "Your Name"
+  git config --global user.email "your@email.com"
+  
 - Sign up for a GitHub.com account.
   - https://github.com/account - add the contents of your .ssh\id_rsa.pub file
     to your list of SSH Keys
 
+Some Git tools and scripts need your github username and API token set.
+	- https://github.com/account
+	- Click on "Global Git Config" to get the commands for the following:
+  		git config --global github.user <username>
+		git config --global github.token <your-token-hex-string>
+	- Execute the command from the shell
+
+==============================================================================
 USE GIT TO RETRIVE A DIRECT COPY OF APPENGINE-BASE
 ==============================================================================
-- git clone git://github.com/mckoss/appengine-base.git <aebase>
-  (where <aebase> is the name of the directory you want to copy the project)
+	git clone git://github.com/mckoss/appengine-base.git <aebase>
+	
+where <aebase> is the name of the directory you want to copy the project.
 
+==============================================================================
 USE GIT TO CREATE YOUR OWN GIT-HUB BRANCH
 ==============================================================================
 Recommended if you may want to offer your contributions back to the main
@@ -44,13 +58,17 @@ AppEngine-Base project.
 
 - Visit: http://github.com/mckoss/appengine-base
 - Click on the "fork" button to make your own version of this project
-- git clone <your-project-clone-URL> <your-project-name>
+
+	git clone <your-project-clone-URL> <your-project-name>
+    git remote rm origin
+    git remote add origin git@github.com:<username>/appengine-base.git
+
+in order to set the origin branch properly (the default git:// protocol that will be setup by
+the clone command does not work on github to push changes back to the server).
+
 - To push your committed changes to your git-hub project:
-    - git push origin master
-  
-  Note, you may have to execute:
-  
-    - git remote rm origin
-    - git remote add origin git@github.com:<username>/appengine-base.git
-  
-  in order to set the origin branch properly (Why is this?).
+
+    git push
+    
+or
+	git push origin master

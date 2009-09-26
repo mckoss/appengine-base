@@ -1,0 +1,6 @@
+h1 AppEngine-Base - a template application for AppEngine development
+
+Please don't fork AppEngine Base yet.  It's a work in progress and not yet cleaned up for
+human consumption.
+
+- Mike Koss
